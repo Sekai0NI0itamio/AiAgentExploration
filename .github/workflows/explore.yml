@@ -1,0 +1,25 @@
+name: explore
+on:
+  schedule:
+    - cron: '0 */3 * * *'   # every 3 hours
+  workflow_dispatch:
+jobs:
+  explore:
+    # Self-hosted on the machine that holds the bar data + the Hermes gateway.
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+      - name: one exploration cycle (3h)
+        working-directory: /Users/stevennovak/Desktop/Important/TradingBots/gen6b/ai-lab
+        run: |
+          ../../live-zoo/venv/bin/python -m farm.farm \
+            --bots hy4-4h,hy4-15m,longcat-4h,longcat-15m \
+            --max-steps 200 --budget 10800 --cycles 1
+      - name: encrypt + push session artifacts
+        working-directory: /Users/stevennovak/Desktop/Important/TradingBots/gen6b/ai-lab
+        env:
+          FARM_ENCRYPTION_KEY: ${{ secrets.ENCRYPTION_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git -C farm/public remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/Sekai0NI0itamio/AiAgentExploration.git"
+          ../../live-zoo/venv/bin/python farm/bundle.py --push
