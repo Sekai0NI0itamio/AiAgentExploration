@@ -1,0 +1,31 @@
+{
+  "ts": "20261119-010439",
+  "repo": "Sekai0NI0itamio/AiExploreBot",
+  "bots": {
+    "beam": {
+      "LOG.md": 11,
+      "OATH.md": 436,
+      "bot.py": 103,
+      "chat.jsonl": 8729
+    },
+    "hy4": {
+      "LOG.md": 10,
+      "OATH.md": 436,
+      "bot.py": 103,
+      "chat.jsonl": 17308
+    },
+    "iceman": {
+      "LOG.md": 13,
+      "OATH.md": 436,
+      "bot.py": 3985,
+      "chat.jsonl": 18470,
+      "data_info.json": 797
+    },
+    "longcat": {
+      "LOG.md": 14,
+      "OATH.md": 436,
+      "bot.py": 103,
+      "chat.jsonl": 11146
+    }
+  }
+}
